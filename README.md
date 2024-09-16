@@ -1,2 +1,1 @@
-# ptb-go
-Performance Tuning and Benchmarking in Go
+# Performance Tuning and Benchmarking in Go
