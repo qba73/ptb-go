@@ -15,26 +15,32 @@ var one = PointBlock{
 	letters: []rune{'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'},
 	score:   1,
 }
+
 var two = PointBlock{
 	letters: []rune{'D', 'G'},
 	score:   2,
 }
+
 var three = PointBlock{
 	letters: []rune{'B', 'C', 'M', 'P'},
 	score:   3,
 }
+
 var four = PointBlock{
 	letters: []rune{'F', 'H', 'V', 'W', 'Y'},
 	score:   4,
 }
+
 var five = PointBlock{
 	letters: []rune{'K'},
 	score:   5,
 }
+
 var eight = PointBlock{
 	letters: []rune{'J', 'X'},
 	score:   8,
 }
+
 var ten = PointBlock{
 	letters: []rune{'Q', 'Z'},
 	score:   10,

@@ -23,8 +23,8 @@ func BenchmarkScore(b *testing.B) {
 		b.Skip("skipping benchmark in short mode.")
 	}
 	for i := 0; i < b.N; i++ {
-		for _, test := range tt {
-			scrabble.Score(test.input)
+		for _, tc := range tt {
+			scrabble.Score(tc.input)
 		}
 	}
 }

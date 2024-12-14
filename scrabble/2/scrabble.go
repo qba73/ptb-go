@@ -1,31 +1,19 @@
 package scrabble
 
-import (
-	"unicode"
-)
+import "strings"
 
-// Score takes a string represending a scrabble word
-// and returns calculated score.
+// an array correlating to ABC's and the values of each letter in scrabble
+// capital letter unicode value - 65 = place in array
+var points = [26]int{1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10}
+
 func Score(word string) int {
-	score := 0
-	for _, r := range word {
-		switch unicode.ToUpper(r) {
-		case 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T':
-			score += 1
-		case 'D', 'G':
-			score += 2
-		case 'B', 'C', 'M', 'P':
-			score += 3
-		case 'F', 'H', 'V', 'W', 'Y':
-			score += 4
-		case 'K':
-			score += 5
-		case 'J', 'X':
-			score += 8
-		case 'Q', 'Z':
-			score += 10
-		default:
-		}
+	sum := 0
+	// make everything uppercase to make the array work
+	workString := strings.ToUpper(word)
+
+	// for each letter, subtract 65 from the unicode value and add the value in that index of the points array
+	for _, set := range workString {
+		sum += points[set-65]
 	}
-	return score
+	return sum
 }
