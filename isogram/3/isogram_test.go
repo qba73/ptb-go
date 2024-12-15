@@ -3,6 +3,7 @@ package isogram_test
 import (
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/qba73/isogram"
 )
 
@@ -87,17 +88,14 @@ func TestIsIsogram(t *testing.T) {
 	for _, tc := range tt {
 		t.Run(tc.desc, func(t *testing.T) {
 			got := isogram.IsIsogram(tc.input)
-			if tc.want != got {
-				t.Errorf("IsIsogram(%q) = %t, want: %t", tc.input, got, tc.want)
+			if !cmp.Equal(tc.want, got) {
+				t.Error(cmp.Diff(tc.want, got))
 			}
 		})
 	}
 }
 
 func BenchmarkIsIsogram(b *testing.B) {
-	if testing.Short() {
-		b.Skip("skipping benchmark in short mode.")
-	}
 	for i := 0; i < b.N; i++ {
 		for _, tc := range tt {
 			isogram.IsIsogram(tc.input)
