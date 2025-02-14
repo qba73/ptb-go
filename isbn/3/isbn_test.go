@@ -7,10 +7,7 @@ import (
 )
 
 func BenchmarkIsValidISBN_Version1(b *testing.B) {
-	if testing.Short() {
-		b.Skip("skipping benchmark in short mode.")
-	}
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		for _, n := range tt {
 			isbn.IsValidISBN_Version1(n.isbn)
 		}
@@ -18,10 +15,7 @@ func BenchmarkIsValidISBN_Version1(b *testing.B) {
 }
 
 func BenchmarkIsValidISBN_Version2(b *testing.B) {
-	if testing.Short() {
-		b.Skip("skipping benchmark in short mode.")
-	}
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		for _, n := range tt {
 			isbn.IsValidISBN_Version2(n.isbn)
 		}
@@ -29,9 +23,6 @@ func BenchmarkIsValidISBN_Version2(b *testing.B) {
 }
 
 func BenchmarkIsValidISBN(b *testing.B) {
-	if testing.Short() {
-		b.Skip("skipping benchmark in short mode.")
-	}
 
 	funcs := map[string]func(string) bool{
 		"Version1": isbn.IsValidISBN_Version1,
