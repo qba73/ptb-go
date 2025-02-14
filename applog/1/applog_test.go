@@ -53,7 +53,7 @@ func TestApplication(t *testing.T) {
 		t.Run(tc.desc, func(t *testing.T) {
 			got := applog.Application(tc.log)
 			if tc.want != got {
-				t.Errorf("Application(\"%s\") = \"%s\", want \"%s\"", tc.log, got, tc.want)
+				t.Errorf("Application(%q) = %q, want %q", tc.log, got, tc.want)
 			}
 		})
 	}
@@ -94,7 +94,7 @@ func TestReplace(t *testing.T) {
 		t.Run(tc.desc, func(t *testing.T) {
 			got := applog.Replace(tc.log, tc.oldChar, tc.newChar)
 			if tc.want != got {
-				t.Errorf("Replace(\"%s\", '%c', '%c') = \"%s\", want \"%s\"", tc.log, tc.oldChar, tc.newChar, got, tc.want)
+				t.Errorf("Replace(%q, %q, %q) = %q, want %q", tc.log, tc.oldChar, tc.newChar, got, tc.want)
 			}
 		})
 	}
@@ -149,7 +149,7 @@ func TestWithinLimit(t *testing.T) {
 		t.Run(tc.desc, func(t *testing.T) {
 			got := applog.WithinLimit(tc.log, tc.limit)
 			if tc.want != got {
-				t.Errorf("WithinLimit(\"%s\", %d) = %t, want %t", tc.log, tc.limit, got, tc.want)
+				t.Errorf("WithinLimit(%q, %d) = %t, want %t", tc.log, tc.limit, got, tc.want)
 			}
 		})
 	}
