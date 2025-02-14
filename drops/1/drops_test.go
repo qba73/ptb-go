@@ -115,11 +115,7 @@ func TestConvert(t *testing.T) {
 }
 
 func BenchmarkConvert(b *testing.B) {
-	if testing.Short() {
-		b.Skip("skipping benchmark in short mode.")
-	}
-
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		for _, tc := range tt {
 			drops.Convert(tc.input)
 		}
