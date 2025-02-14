@@ -39,17 +39,10 @@ func TestShareWith(t *testing.T) {
 	}
 }
 
-var result string
-
 func BenchmarkShareWith(b *testing.B) {
-	if testing.Short() {
-		b.Skip("skipping benchmark in short mode.")
-	}
-	var got string
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		for _, tc := range tt {
-			got = hello.ShareWith(tc.input)
+			hello.ShareWith(tc.input)
 		}
 	}
-	result = got
 }
