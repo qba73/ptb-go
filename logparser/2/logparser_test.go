@@ -12,7 +12,6 @@ var testsValidLine = []struct {
 	text string
 	want bool
 }{
-
 	{
 		desc: "Valid ERR message",
 		text: "[ERR] A good error here",
