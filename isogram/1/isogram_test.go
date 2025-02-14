@@ -96,7 +96,7 @@ func TestIsIsogram(t *testing.T) {
 }
 
 func BenchmarkIsIsogram(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		for _, tc := range tt {
 			isogram.IsIsogram(tc.input)
 		}
