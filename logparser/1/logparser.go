@@ -59,18 +59,3 @@ func TagWithUserName(lines []string) []string {
 	}
 	return res
 }
-
-var re = regexp.MustCompile(`User[\s]+(\S*)\b`)
-
-func TagWithUserNameV2(lines []string) []string {
-	res := make([]string, 0)
-	for _, v := range lines {
-		mat := re.FindStringSubmatch(v)
-		if len(mat) > 1 {
-			res = append(res, fmt.Sprintf("[USR] %v %v", mat[1], v))
-		} else {
-			res = append(res, v)
-		}
-	}
-	return res
-}
