@@ -192,3 +192,33 @@ func TestTagWithUserName(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkTagWithUserName(b *testing.B) {
+	tests := []struct {
+		desc  string
+		lines []string
+		want  []string
+	}{
+		{
+			desc: "INF message",
+			lines: []string{
+				"[WRN] User James123 has exceeded storage space.",
+				"[WRN] Host down. User   Michelle4 lost connection.",
+				"[INF] Users can login again after 23:00.",
+				"[DBG] We need to check that user names are at least 6 chars long.",
+			},
+			want: []string{
+				"[USR] James123 [WRN] User James123 has exceeded storage space.",
+				"[USR] Michelle4 [WRN] Host down. User   Michelle4 lost connection.",
+				"[INF] Users can login again after 23:00.",
+				"[DBG] We need to check that user names are at least 6 chars long.",
+			},
+		},
+	}
+
+	for b.Loop() {
+		for _, tc := range tests {
+			logparser.TagWithUserNameV2(tc.lines)
+		}
+	}
+}
