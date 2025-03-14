@@ -18,14 +18,6 @@ func TestScore(t *testing.T) {
 	}
 }
 
-func BenchmarkScore(b *testing.B) {
-	for b.Loop() {
-		for _, tc := range tt {
-			scrabble.Score(tc.input)
-		}
-	}
-}
-
 var tt = []struct {
 	desc  string
 	input string
@@ -91,4 +83,12 @@ var tt = []struct {
 		input: "abcdefghijklmnopqrstuvwxyz",
 		want:  87,
 	},
+}
+
+func BenchmarkScore(b *testing.B) {
+	for b.Loop() {
+		for _, tc := range tt {
+			scrabble.Score(tc.input)
+		}
+	}
 }
