@@ -138,20 +138,19 @@ func TestCountQuotedPasswords(t *testing.T) {
 	}
 }
 
-var testsRemoveEndOfLineText = []struct {
-	desc string
-	text string
-	want string
-}{
-	{
-		desc: "INF message",
-		text: "[INF] end-of-line23033 Network Failure end-of-line27",
-		want: "[INF]  Network Failure ",
-	},
-}
-
 func TestRemoveEndOfLineText(t *testing.T) {
-	for _, tt := range testsRemoveEndOfLineText {
+	tests := []struct {
+		desc string
+		text string
+		want string
+	}{
+		{
+			desc: "INF message",
+			text: "[INF] end-of-line23033 Network Failure end-of-line27",
+			want: "[INF]  Network Failure ",
+		},
+	}
+	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			got := logparser.RemoveEndOfLineText(tt.text)
 			want := tt.want
@@ -159,14 +158,6 @@ func TestRemoveEndOfLineText(t *testing.T) {
 				t.Fatalf("want: %v, got: %v", want, got)
 			}
 		})
-	}
-}
-
-func BenchmarkRemoveEndOfLineText(b *testing.B) {
-	for b.Loop() {
-		for _, tt := range testsRemoveEndOfLineText {
-			logparser.RemoveEndOfLineText(tt.text)
-		}
 	}
 }
 

@@ -5,45 +5,55 @@ import (
 	"regexp"
 )
 
-var (
-	regValid    = regexp.MustCompile(`^(\[TRC\]|\[DBG\]|\[INF\]|\[WRN\]|\[ERR\]|\[FTL\])`)
-	regSplit    = regexp.MustCompile(`\<[(\*\~\=\-)]*\>`)
-	regPasswds  = regexp.MustCompile(`(?i)(\".*password\")`)
-	regEol      = regexp.MustCompile(`(end\-of\-line\d*)`)
-	regUsername = regexp.MustCompile(`User\s+([a-zA-Z0-9]*)`)
-)
-
 func IsValidLine(text string) bool {
-	return regValid.MatchString(text)
+	re, err := regexp.Compile(`^\[TRC\]|^\[DBG\]|^\[INF\]|^\[WRN\]|^\[ERR\]|^\[FTL\]`)
+	if err != nil {
+		panic(err)
+	}
+	return re.MatchString(text)
 }
 
 func SplitLogLine(text string) []string {
-	return regSplit.Split(text, -1)
+	re, err := regexp.Compile(`<[~*=-]*>`)
+	if err != nil {
+		panic(err)
+	}
+	return re.Split(text, -1)
 }
 
 func CountQuotedPasswords(lines []string) int {
-	sum := 0
-	for _, x := range lines {
-		if regPasswds.MatchString(x) {
-			sum++
+	re, err := regexp.Compile(`(?i)".*password.*"`)
+	if err != nil {
+		panic(err)
+	}
+	cnt := 0
+	for _, v := range lines {
+		if re.MatchString(v) {
+			cnt++
 		}
 	}
-	return sum
+	return cnt
 }
 
 func RemoveEndOfLineText(text string) string {
-	return regEol.ReplaceAllString(text, "")
+	re, err := regexp.Compile(`end-of-line[\d]+`)
+	if err != nil {
+		panic(err)
+	}
+	return re.ReplaceAllString(text, "")
 }
 
+var reUserName = regexp.MustCompile(`User[\s]+(\S*)\b`)
+
 func TagWithUserName(lines []string) []string {
-	outputLines := lines[:]
-	for i, x := range lines {
-		match := regUsername.FindStringSubmatch(x)
-		if match != nil {
-			outputLines[i] = fmt.Sprintf("[USR] %s %s", match[1], x)
+	res := make([]string, 0)
+	for _, v := range lines {
+		mat := reUserName.FindStringSubmatch(v)
+		if len(mat) > 1 {
+			res = append(res, fmt.Sprintf("[USR] %v %v", mat[1], v))
 		} else {
-			outputLines[i] = x
+			res = append(res, v)
 		}
 	}
-	return outputLines
+	return res
 }
