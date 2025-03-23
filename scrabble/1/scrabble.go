@@ -58,6 +58,8 @@ func (p PointBlock) Total(s string) int {
 	return sum
 }
 
+// Score takes a string representing a word
+// and returns calculated score.
 func Score(word string) int {
 	totalSum := 0
 	pointSets := []PointBlock{one, two, three, four, five, eight, ten}

@@ -4,7 +4,7 @@ import (
 	"unicode"
 )
 
-// Score takes a string represending a scrabble word
+// Score takes a string representing a word
 // and returns calculated score.
 func Score(word string) int {
 	score := 0
