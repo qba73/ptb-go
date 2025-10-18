@@ -88,7 +88,7 @@ var tt = []struct {
 func BenchmarkScore(b *testing.B) {
 	for b.Loop() {
 		for _, tc := range tt {
-			scrabble.Score(tc.input)
+			_ = scrabble.Score(tc.input)
 		}
 	}
 }
