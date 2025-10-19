@@ -42,7 +42,7 @@ func TestShareWith(t *testing.T) {
 func BenchmarkShareWith(b *testing.B) {
 	for b.Loop() {
 		for _, tc := range tt {
-			hello.ShareWith(tc.input)
+			_ = hello.ShareWith(tc.input)
 		}
 	}
 }

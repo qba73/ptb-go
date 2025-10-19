@@ -9,7 +9,7 @@ import (
 func BenchmarkIsValidISBN_Version1(b *testing.B) {
 	for b.Loop() {
 		for _, n := range tt {
-			isbn.IsValidISBN_Version1(n.isbn)
+			_ = isbn.IsValidISBN_Version1(n.isbn)
 		}
 	}
 }
@@ -17,7 +17,7 @@ func BenchmarkIsValidISBN_Version1(b *testing.B) {
 func BenchmarkIsValidISBN_Version2(b *testing.B) {
 	for b.Loop() {
 		for _, n := range tt {
-			isbn.IsValidISBN_Version2(n.isbn)
+			_ = isbn.IsValidISBN_Version2(n.isbn)
 		}
 	}
 }
@@ -33,7 +33,7 @@ func BenchmarkIsValidISBN(b *testing.B) {
 		b.Run(name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				for _, tc := range tt {
-					f(tc.isbn)
+					_ = f(tc.isbn)
 				}
 			}
 		})

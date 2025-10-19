@@ -11,7 +11,7 @@ func BenchmarkBoolToInt(b *testing.B) {
 
 	for b.Loop() {
 		for _, i := range in {
-			bti.BoolToInt(i)
+			_ = bti.BoolToInt(i)
 		}
 	}
 }
@@ -21,7 +21,7 @@ func BenchmarkBoolToInt2(b *testing.B) {
 
 	for b.Loop() {
 		for _, i := range in {
-			bti.BoolToInt2(i)
+			_ = bti.BoolToInt2(i)
 		}
 	}
 }
@@ -31,7 +31,7 @@ func BenchmarkBoolToInt3(b *testing.B) {
 
 	for b.Loop() {
 		for _, i := range in {
-			bti.BoolToInt3(i)
+			_ = bti.BoolToInt3(i)
 		}
 	}
 }

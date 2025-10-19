@@ -20,7 +20,7 @@ func TestEncode(t *testing.T) {
 func BenchmarkEncode(b *testing.B) {
 	for b.Loop() {
 		for _, test := range tt {
-			atbash.Encode(test.phrase)
+			_ = atbash.Encode(test.phrase)
 		}
 	}
 }

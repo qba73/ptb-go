@@ -122,7 +122,7 @@ func TestIsValidISBN_FailsOnInvalidInput(t *testing.T) {
 func BenchmarkIsValidISBN(b *testing.B) {
 	for b.Loop() {
 		for _, n := range tt {
-			isbn.IsValidISBN(n.isbn)
+			_ = isbn.IsValidISBN(n.isbn)
 		}
 	}
 }

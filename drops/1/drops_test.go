@@ -117,7 +117,7 @@ func TestConvert(t *testing.T) {
 func BenchmarkConvert(b *testing.B) {
 	for b.Loop() {
 		for _, tc := range tt {
-			drops.Convert(tc.input)
+			_ = drops.Convert(tc.input)
 		}
 	}
 }
